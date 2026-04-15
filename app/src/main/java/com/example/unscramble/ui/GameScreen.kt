@@ -81,6 +81,7 @@ fun GameScreen(gameViewModel: GameViewModel = viewModel()) {
             onUserGuessChanged = { gameViewModel.updateUserGuess(it) },
             wordCount = gameUiState.currentWordCount,
             userGuess = gameViewModel.userGuess,
+            addNewWords = gameUiState.addNewWords,
             onKeyboardDone = { gameViewModel.checkUserGuess() },
             currentScrambledWord = gameUiState.currentScrambledWord,
             isGuessWrong = gameUiState.isGuessedWordWrong,
@@ -149,11 +150,13 @@ fun GameLayout(
     wordCount: Int,
     isGuessWrong: Boolean,
     userGuess: String,
+    addNewWords: List<String>,
     onUserGuessChanged: (String) -> Unit,
     onKeyboardDone: () -> Unit,
     modifier: Modifier = Modifier
 ) {
     val mediumPadding = dimensionResource(R.dimen.padding_medium)
+
 
     Card(
         modifier = modifier,
@@ -249,6 +252,8 @@ private fun FinalScoreDialog(
         }
     )
 }
+
+
 
 @Preview(showBackground = true)
 @Composable
